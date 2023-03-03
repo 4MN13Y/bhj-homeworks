@@ -1,34 +1,27 @@
-const slides = Array.from(document.querySelectorAll("div.slider__item"));
-const right = document.getElementsByClassName(
-  "slider__arrow slider__arrow_next"
-);
-const left = document.getElementsByClassName(
-  "slider__arrow slider__arrow_prev"
-);
+const slides = Array.from(document.querySelectorAll(".slider__item"));
 
-let number = 0;
-function hideSlide() {
-  slides[number].className = "slider__item";
-}
+const btnLeft = document.querySelector(".slider__arrow_prev");
 
-function showSlide() {
-  slides[number].className = "slider__item slider__item_active";
-}
+const btnRight = document.querySelector(".slider__arrow_next");
 
-function countSlide() {
-  number = (number + slides.length) % slides.length;
-}
+btnLeft.onclick = () => {
+  let active = slides.findIndex((value) =>
+    value.classList.contains("slider__item_active")
+  );
+  slides[active].classList.remove("slider__item_active");
+  active !== slides.length - 1 ? active++ : (active = 0);
 
-right[0].onclick = () => {
-  hideSlide();
-  number++;
-  countSlide();
-  showSlide();
+  slides[active].classList.add("slider__item_active");
 };
 
-left[0].onclick = () => {
-  hideSlide();
-  number--;
-  countSlide();
-  showSlide();
+btnRight.onclick = () => {
+  let active = slides.findIndex((value) =>
+    value.classList.contains("slider__item_active")
+  );
+  slides[active].classList.remove("slider__item_active");
+  active <= 0 ? (active = slides.length - 1) : active--;
+
+  slides[active].classList.add("slider__item_active");
 };
+
+
