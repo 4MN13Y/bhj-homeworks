@@ -4,8 +4,8 @@ const lost = document.getElementById("lost");
 for (let i = 1; i < 10; i++) {
   let hole = document.getElementById(`hole${i}`);
   hole.onclick = function () {
-    if (hole.className.includes("hole_has-mole")) {
-      dead.textContent++;
+    if (hole.classList.contains("hole_has-mole")) {
+      dead.textContent;
     } else {
       lost.textContent++;
     }
@@ -21,3 +21,4 @@ for (let i = 1; i < 10; i++) {
     }
   };
 }
+
